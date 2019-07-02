@@ -10,6 +10,8 @@ import UIKit
 
 class WikiTableViewController: UITableViewController {
 
+	var viewModel: WikiViewModel!
+
 	lazy var searchController: UISearchController = {
 		let searchController = UISearchController(searchResultsController: nil)
 		searchController.searchResultsUpdater = self
@@ -23,22 +25,28 @@ class WikiTableViewController: UITableViewController {
 		navigationItem.searchController = searchController
 		navigationItem.hidesSearchBarWhenScrolling = false
 		definesPresentationContext = true
+		self.viewModel = WikiViewModel()
+		self.viewModel.onComplete = { [weak self] in
+			self?.tableView.reloadData()
+		}
     }
 }
 
 extension WikiTableViewController {
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		// #warning Incomplete implementation, return the number of rows
-		return 0
+		return self.viewModel.rows
 	}
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+		cell.textLabel?.text = self.viewModel.getTitle(by: indexPath)
+		cell.detailTextLabel?.text = self.viewModel.getSummary(by: indexPath)
+		cell.detailTextLabel?.numberOfLines = 0
 		return cell
 	}
 }
 
 extension WikiTableViewController: UISearchResultsUpdating {
 	func updateSearchResults(for searchController: UISearchController) {
-		
+		self.viewModel.fetch(with: searchController.searchBar.text)
 	}
 }
