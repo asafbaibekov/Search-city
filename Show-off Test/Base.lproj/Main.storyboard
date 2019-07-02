@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kkr-13-WUV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aHR-cE-ogY">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Search City-->
         <scene sceneID="YCP-gV-jYq">
             <objects>
                 <tableViewController id="Kkr-13-WUV" sceneMemberID="viewController">
@@ -32,10 +32,29 @@
                             <outlet property="delegate" destination="Kkr-13-WUV" id="vcO-js-1ae"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Search City" id="fRT-Tl-fDH"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="16u-Pb-JFD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="154" y="183"/>
+            <point key="canvasLocation" x="1063.768115942029" y="182.8125"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="9Ty-Ra-rvb">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aHR-cE-ogY" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5it-tj-Lej">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Kkr-13-WUV" kind="relationship" relationship="rootViewController" id="RpL-18-ffV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nmX-B7-cHk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="153.62318840579712" y="182.8125"/>
         </scene>
     </scenes>
 </document>
