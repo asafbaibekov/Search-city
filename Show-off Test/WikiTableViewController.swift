@@ -14,9 +14,9 @@ class WikiTableViewController: UITableViewController {
 
 	lazy var searchController: UISearchController = {
 		let searchController = UISearchController(searchResultsController: nil)
-		searchController.searchResultsUpdater = self
 		searchController.obscuresBackgroundDuringPresentation = false
 		searchController.searchBar.placeholder = "Search City"
+		searchController.searchBar.delegate = self
 		return searchController
 	}()
 
@@ -56,8 +56,8 @@ extension WikiTableViewController {
 	}
 }
 
-extension WikiTableViewController: UISearchResultsUpdating {
-	func updateSearchResults(for searchController: UISearchController) {
+extension WikiTableViewController: UISearchBarDelegate {
+	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 		self.viewModel.fetch(with: searchController.searchBar.text)
 	}
 }
