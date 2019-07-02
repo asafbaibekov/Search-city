@@ -44,13 +44,15 @@ extension WikiTableViewController {
 		guard self.viewModel.getImageURL(by: indexPath) != nil else { cell.imageView?.image = nil; return cell }
 		if let data = self.viewModel.getImageData(by: indexPath) {
 			cell.imageView?.image = UIImage(data: data)
-		} else {
+		} else if !self.viewModel.getWikiEntity(at: indexPath).triedLoadImage {
 			self.viewModel.addImageOperation(with: indexPath, complition: { [weak self] indexPath in
 				guard
 					let indexPathsForVisibleRows = self?.tableView.indexPathsForVisibleRows,
 					indexPathsForVisibleRows.contains(indexPath) else { return }
-				self?.tableView.reloadRows(at: [indexPath], with: .fade)
+				self?.tableView.reloadRows(at: [indexPath], with: .none)
 			})
+		} else {
+			cell.imageView?.image = nil
 		}
 		return cell
 	}
@@ -59,5 +61,8 @@ extension WikiTableViewController {
 extension WikiTableViewController: UISearchBarDelegate {
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 		self.viewModel.fetch(with: searchController.searchBar.text)
+	}
+	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+		self.viewModel.reset()
 	}
 }

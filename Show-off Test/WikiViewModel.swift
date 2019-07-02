@@ -28,25 +28,35 @@ class WikiViewModel {
 }
 
 extension WikiViewModel {
+	func reset() {
+		self.wikiEntities.removeAll()
+		self.rows = wikiEntities.count
+		self.onComplete?()
+	}
 	func fetch(with keyword: String?) {
 		NetworkManager.shared.fetchWiki(
 			with: keyword,
 			complition: { [weak self] result in
+				guard let self = self else { return }
 				switch result {
 				case .success(let wikiEntities):
-					self?.wikiEntities = wikiEntities
-					self?.rows = wikiEntities.count
-					self?.onComplete?()
+					self.wikiEntities = wikiEntities
+					self.rows = wikiEntities.count
+					CoreDataHandler.save(wikiEntities: wikiEntities, with: keyword)
+					self.onComplete?()
 				case .failure(let error):
 					print(error.localizedDescription)
+					self.wikiEntities = CoreDataHandler.getWikies(by: keyword)
+					self.rows = self.wikiEntities.count
+					self.onComplete?()
 				}
 			}
 		)
 	}
 	func addImageOperation(with indexPath: IndexPath, complition: @escaping (IndexPath) -> Void) {
 		let operation = ImageDownloadOperation(wikiEntity: getWikiEntity(at: indexPath), indexPath: indexPath)
-		operation.completionBlock = { [weak operation] in
-			guard let operation = operation, !operation.isCancelled else { return }
+		operation.completionBlock = { [weak self, weak operation] in
+			guard let self = self, let operation = operation, !operation.isCancelled else { return }
 			DispatchQueue.main.async {
 				complition(operation.indexPath)
 			}
