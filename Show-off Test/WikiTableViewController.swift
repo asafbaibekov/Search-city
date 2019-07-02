@@ -10,8 +10,19 @@ import UIKit
 
 class WikiTableViewController: UITableViewController {
 
+	lazy var searchController: UISearchController = {
+		let searchController = UISearchController(searchResultsController: nil)
+		searchController.searchResultsUpdater = self
+		searchController.obscuresBackgroundDuringPresentation = false
+		searchController.searchBar.placeholder = "Search City"
+		return searchController
+	}()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+		navigationItem.searchController = searchController
+		navigationItem.hidesSearchBarWhenScrolling = false
+		definesPresentationContext = true
     }
 }
 
@@ -27,5 +38,11 @@ extension WikiTableViewController {
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 		return cell
+	}
+}
+
+extension WikiTableViewController: UISearchResultsUpdating {
+	func updateSearchResults(for searchController: UISearchController) {
+		
 	}
 }
