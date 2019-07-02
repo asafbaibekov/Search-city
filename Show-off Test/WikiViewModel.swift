@@ -10,6 +10,12 @@ import UIKit
 
 class WikiViewModel {
 
+	private var downloadQueue: OperationQueue = {
+		let queue = OperationQueue()
+		queue.name = "Image downloader queue"
+		return queue
+	}()
+
 	private var wikiEntities: [WikiEntity]
 	private(set) var rows: Int
 
@@ -36,6 +42,16 @@ extension WikiViewModel {
 				}
 			}
 		)
+	}
+	func addImageOperation(with indexPath: IndexPath, complition: @escaping (IndexPath) -> Void) {
+		let operation = ImageDownloadOperation(wikiEntity: getWikiEntity(at: indexPath), indexPath: indexPath)
+		operation.completionBlock = { [weak operation] in
+			guard let operation = operation, !operation.isCancelled else { return }
+			DispatchQueue.main.async {
+				complition(operation.indexPath)
+			}
+		}
+		self.downloadQueue.addOperation(operation)
 	}
 }
 

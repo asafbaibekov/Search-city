@@ -41,6 +41,17 @@ extension WikiTableViewController {
 		cell.textLabel?.text = self.viewModel.getTitle(by: indexPath)
 		cell.detailTextLabel?.text = self.viewModel.getSummary(by: indexPath)
 		cell.detailTextLabel?.numberOfLines = 0
+		guard self.viewModel.getImageURL(by: indexPath) != nil else { cell.imageView?.image = nil; return cell }
+		if let data = self.viewModel.getImageData(by: indexPath) {
+			cell.imageView?.image = UIImage(data: data)
+		} else {
+			self.viewModel.addImageOperation(with: indexPath, complition: { [weak self] indexPath in
+				guard
+					let indexPathsForVisibleRows = self?.tableView.indexPathsForVisibleRows,
+					indexPathsForVisibleRows.contains(indexPath) else { return }
+				self?.tableView.reloadRows(at: [indexPath], with: .fade)
+			})
+		}
 		return cell
 	}
 }
