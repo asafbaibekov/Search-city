@@ -16,4 +16,10 @@ class WikiEntity: Decodable {
 	let title, summary: String?
 	let thumbnailImg: URL?
 	var imageData: Data?
+	init(title: String?, summary: String?, thumbnailImg: URL?, imageData: Data?) {
+		self.title = title
+		self.summary = summary
+		self.thumbnailImg = thumbnailImg
+		self.imageData = imageData
+	}
 }
