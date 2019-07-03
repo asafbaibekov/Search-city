@@ -21,5 +21,6 @@ class ImageDownloadOperation: Operation {
 	override func main() {
 		guard !isCancelled, let url = self.wikiEntity.thumbnailImg else { return }
 		self.wikiEntity.imageData = try? Data(contentsOf: url)
+		self.wikiEntity.triedLoadImage = true
 	}
 }

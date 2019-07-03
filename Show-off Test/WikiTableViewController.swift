@@ -44,13 +44,15 @@ extension WikiTableViewController {
 		guard self.viewModel.getImageURL(by: indexPath) != nil else { cell.imageView?.image = nil; return cell }
 		if let data = self.viewModel.getImageData(by: indexPath) {
 			cell.imageView?.image = UIImage(data: data)
-		} else {
+		} else if !(self.viewModel.getWikiEntity(at: indexPath).triedLoadImage ?? false) {
 			self.viewModel.addImageOperation(with: indexPath, complition: { [weak self] indexPath in
 				guard
 					let indexPathsForVisibleRows = self?.tableView.indexPathsForVisibleRows,
 					indexPathsForVisibleRows.contains(indexPath) else { return }
 				self?.tableView.reloadRows(at: [indexPath], with: .fade)
 			})
+		} else {
+			cell.imageView?.image = nil
 		}
 		return cell
 	}
