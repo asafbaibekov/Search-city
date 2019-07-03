@@ -12,6 +12,7 @@
 		2D4A646522CBAC0D00EF7D99 /* Entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4A646422CBAC0D00EF7D99 /* Entities.swift */; };
 		2D4A646722CBAD0400EF7D99 /* WikiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4A646622CBAD0400EF7D99 /* WikiViewModel.swift */; };
 		2D4A646B22CBB1C900EF7D99 /* ImageDownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4A646A22CBB1C900EF7D99 /* ImageDownloadOperation.swift */; };
+		2D4A648322CCB3D100EF7D99 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4A648222CCB3D100EF7D99 /* CoreDataHandler.swift */; };
 		2DFF007A22CA4D1A00D1998E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF007922CA4D1A00D1998E /* AppDelegate.swift */; };
 		2DFF007F22CA4D1A00D1998E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DFF007D22CA4D1A00D1998E /* Main.storyboard */; };
 		2DFF008222CA4D1A00D1998E /* Show_off_Test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF008022CA4D1A00D1998E /* Show_off_Test.xcdatamodeld */; };
@@ -25,6 +26,7 @@
 		2D4A646422CBAC0D00EF7D99 /* Entities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entities.swift; sourceTree = "<group>"; };
 		2D4A646622CBAD0400EF7D99 /* WikiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikiViewModel.swift; sourceTree = "<group>"; };
 		2D4A646A22CBB1C900EF7D99 /* ImageDownloadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadOperation.swift; sourceTree = "<group>"; };
+		2D4A648222CCB3D100EF7D99 /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
 		2DFF007622CA4D1A00D1998E /* Show-off Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Show-off Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DFF007922CA4D1A00D1998E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2DFF007E22CA4D1A00D1998E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				2D4A646222CBABD500EF7D99 /* NetworkManager.swift */,
 				2D4A646422CBAC0D00EF7D99 /* Entities.swift */,
 				2D4A646A22CBB1C900EF7D99 /* ImageDownloadOperation.swift */,
+				2D4A648222CCB3D100EF7D99 /* CoreDataHandler.swift */,
 				2DFF007D22CA4D1A00D1998E /* Main.storyboard */,
 				2DFF008322CA4D1A00D1998E /* Assets.xcassets */,
 				2DFF008522CA4D1A00D1998E /* LaunchScreen.storyboard */,
@@ -151,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D4A646522CBAC0D00EF7D99 /* Entities.swift in Sources */,
+				2D4A648322CCB3D100EF7D99 /* CoreDataHandler.swift in Sources */,
 				2D4A646322CBABD500EF7D99 /* NetworkManager.swift in Sources */,
 				2D4A646722CBAD0400EF7D99 /* WikiViewModel.swift in Sources */,
 				2DFF007A22CA4D1A00D1998E /* AppDelegate.swift in Sources */,
