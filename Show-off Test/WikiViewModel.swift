@@ -37,9 +37,13 @@ extension WikiViewModel {
 				case .success(let wikiEntities):
 					self.wikiEntities = wikiEntities
 					self.rows = wikiEntities.count
+					CoreDataHandler.save(wikiEntities: wikiEntities, with: keyword)
 					self.onComplete?()
 				case .failure(let error):
 					print(error.localizedDescription)
+					self.wikiEntities = CoreDataHandler.getWikiEntities(by: keyword)
+					self.rows = self.wikiEntities.count
+					self.onComplete?()
 				}
 			}
 		)
