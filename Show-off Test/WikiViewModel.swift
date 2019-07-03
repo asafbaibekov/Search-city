@@ -32,11 +32,12 @@ extension WikiViewModel {
 		NetworkManager.shared.fetchWiki(
 			with: keyword,
 			complition: { [weak self] result in
+				guard let self = self else { return }
 				switch result {
 				case .success(let wikiEntities):
-					self?.wikiEntities = wikiEntities
-					self?.rows = wikiEntities.count
-					self?.onComplete?()
+					self.wikiEntities = wikiEntities
+					self.rows = wikiEntities.count
+					self.onComplete?()
 				case .failure(let error):
 					print(error.localizedDescription)
 				}
